@@ -63,4 +63,8 @@
     #'(lambda (&rest args)
 	(apply 'anyp-iter
 	       (cons f-list-1 args)))))
-
+(defun bind (fn &rest args)
+  (lexical-let ((fn-1 fn)
+		(build-time-args args))
+    #'(lambda (&rest run-time-args)
+	(apply fn-1 (append build-time-args run-time-args)))))
