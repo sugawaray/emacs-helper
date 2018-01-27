@@ -68,3 +68,7 @@
 		(build-time-args args))
     #'(lambda (&rest run-time-args)
 	(apply fn-1 (append build-time-args run-time-args)))))
+(defun enqueue-region (queue)
+  (let ((region-string (buffer-substring-no-properties (region-beginning)
+						       (region-end))))
+    (cons region-string queue)))
